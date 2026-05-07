@@ -3,7 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jfuj.co | Film Photography by Jerin Kuruvilla</title>
+    <title>Jerin Kuruvilla · Film Photographer | Philadelphia, PA</title>
+    <meta name="description" content="Philadelphia film photographer specializing in proposals, graduations, and destination photography. Soft light, deliberate exposure, images that feel real.">
+    <meta name="author" content="Jerin Kuruvilla">
+    <meta name="google-site-verification" content="DOVpfe9RFmVkWUYlRKNhO_14vfUunu2iF62yrrr3nvA">
+    <link rel="canonical" href="https://jfuj.org/">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jfuj.org/">
+    <meta property="og:title" content="Jerin Kuruvilla · Film Photographer | Philadelphia, PA">
+    <meta property="og:description" content="Philadelphia film photographer specializing in proposals, graduations, and destination photography. Soft light, deliberate exposure, images that feel real.">
+    <meta property="og:image" content="https://jfuj.org/images/Portfolio/proposal/DSCF1253.jpg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jerin Kuruvilla · Film Photographer | Philadelphia, PA">
+    <meta name="twitter:description" content="Philadelphia film photographer specializing in proposals, graduations, and destination photography.">
+    <meta name="twitter:image" content="https://jfuj.org/images/Portfolio/proposal/DSCF1253.jpg">
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "jfuj — Jerin Kuruvilla Photography",
+      "description": "Film photographer based in Philadelphia specializing in proposals, graduations, portraits, and destination photography.",
+      "url": "https://jfuj.org",
+      "image": "https://jfuj.org/images/Portfolio/proposal/DSCF1253.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Philadelphia",
+        "addressRegion": "PA",
+        "addressCountry": "US"
+      },
+      "areaServed": ["Philadelphia", "New York City", "Pennsylvania", "New Jersey"],
+      "priceRange": "$$",
+      "sameAs": ["https://www.instagram.com/jfuj.co"]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Jost:wght@100;200;300&display=swap" rel="stylesheet">
@@ -193,7 +228,7 @@
 
         @media (max-width: 960px) {
             .home-hero { grid-template-columns: 1fr; grid-template-rows: 58dvh auto; height: auto; min-height: auto; }
-            .home-hero-ghost { display: none; }
+            .home-hero-ghost, .home-hero-scroll { display: none; }
             .home-hero-side { padding: 2.5rem 2rem 3rem; position: static; }
             .style-band { grid-template-columns: 1fr; gap: 2rem; padding: 4rem var(--gutter); }
             .style-band-right { grid-template-columns: 1fr 1fr; gap: .5rem; }
@@ -206,6 +241,9 @@
         @media (max-width: 600px) {
             .home-hero { grid-template-rows: 55dvh auto; }
             .style-band-right { grid-template-columns: 1fr; }
+            .style-band-statement { font-size: clamp(1.25rem, 5vw, 1.75rem); }
+            .section-heading { padding: 2rem var(--gutter) 1rem; gap: 1.25rem; }
+            .portfolio-intro { padding: 0 var(--gutter) 1rem; }
         }
     </style>
 </head>
@@ -216,10 +254,10 @@
 <!-- Mobile nav overlay -->
 <div class="nav-overlay" id="navOverlay" aria-hidden="true">
     <a href="index.html">Home</a>
+    <a href="proposal-ryan-anusha.html">Proposal</a>
+    <a href="graduation-sara.html">Graduation</a>
     <a href="blog-baby-dedication.html">Baby Dedication</a>
     <a href="blog-destination.html">Destination</a>
-    <a href="graduation-sara.html">Graduation</a>
-    <a href="proposal-ryan-anusha.html">Proposal</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
 </div>
@@ -230,10 +268,10 @@
     <nav class="nav" aria-label="Site navigation">
         <a href="index.html" class="nav-logo">jfuj.co</a>
         <ul class="nav-links">
+            <li><a href="proposal-ryan-anusha.html">Proposal</a></li>
+            <li><a href="graduation-sara.html">Graduation</a></li>
             <li><a href="blog-baby-dedication.html">Baby Dedication</a></li>
             <li><a href="blog-destination.html">Destination</a></li>
-            <li><a href="graduation-sara.html">Graduation</a></li>
-            <li><a href="proposal-ryan-anusha.html">Proposal</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -282,7 +320,7 @@
             </div>
             <div class="style-band-right">
                 <div class="style-band-img style-band-img-tall">
-                    <img src="images/Portfolio/proposal/DSCF1048.jpg" alt="Soft cinematic portrait" loading="lazy">
+                    <img src="images/Portfolio/proposal/DSCF0479.jpg" alt="Soft cinematic portrait" loading="lazy">
                 </div>
                 <div class="style-band-img style-band-img-sq">
                     <img src="images/Portfolio/Destination/DSCF8646.jpg" alt="Film grain portrait" loading="lazy">
@@ -306,7 +344,7 @@
         <div class="portfolio-grid" id="stories">
             <a href="proposal-ryan-anusha.html" class="portfolio-card reveal">
                 <div class="portfolio-card-img">
-                    <img src="images/Portfolio/proposal/DSCF0675.jpg" alt="Proposal, Ryan and Anusha" loading="lazy">
+                    <img src="images/Portfolio/proposal/DSCF0677.jpg" alt="Proposal, Ryan and Anusha" loading="lazy">
                 </div>
                 <span class="portfolio-card-label">Romance</span>
                 <span class="portfolio-card-name">Proposal</span>
