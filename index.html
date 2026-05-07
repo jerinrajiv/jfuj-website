@@ -425,8 +425,8 @@
         const navH = 68;
         const fullH = window.innerHeight - navH;
         const targetH = Math.round(window.innerHeight * 0.55);
-        const range = 220; // px of scroll over which shrink completes
-        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        const range = 480; // px of scroll over which shrink completes
+        function easeOut(t) { return 1 - Math.pow(1 - t, 2); } // quadratic — gentle, floaty
         let rafId = null;
         function update() {
             const p = Math.min(1, Math.max(0, window.scrollY / range));
