@@ -240,7 +240,7 @@
         }
 
         @media (max-width: 960px) {
-            .home-hero { grid-template-columns: 1fr; grid-template-rows: calc(100dvh - var(--nav-h)) auto; height: auto; min-height: auto; }
+            .home-hero { grid-template-columns: 1fr; grid-template-rows: auto auto; height: auto; min-height: auto; }
             .home-hero-img { height: calc(100dvh - var(--nav-h)); }
             .home-hero-img img { height: 100%; object-fit: cover; }
             .home-hero-ghost, .home-hero-scroll { display: none; }
@@ -254,7 +254,6 @@
         }
 
         @media (max-width: 600px) {
-            .home-hero { grid-template-rows: calc(100dvh - var(--nav-h)) auto; }
             .home-hero-img { height: calc(100dvh - var(--nav-h)); }
             .style-band-right { grid-template-columns: 1fr; }
             .style-band-statement { font-size: clamp(1.25rem, 5vw, 1.75rem); }
@@ -416,6 +415,28 @@
         { threshold: 0.06 }
     );
     reveals.forEach(el => observer.observe(el));
+
+    // Mobile hero: shrink from full-screen to ~55dvh as user scrolls down
+    (function() {
+        if (!window.matchMedia('(max-width: 960px)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const heroImg = document.querySelector('.home-hero-img');
+        if (!heroImg) return;
+        const navH = 68;
+        const fullH = window.innerHeight - navH;
+        const targetH = Math.round(window.innerHeight * 0.55);
+        const range = 220; // px of scroll over which shrink completes
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        let rafId = null;
+        function update() {
+            const p = Math.min(1, Math.max(0, window.scrollY / range));
+            heroImg.style.height = (fullH + (targetH - fullH) * easeOut(p)) + 'px';
+            rafId = null;
+        }
+        window.addEventListener('scroll', () => {
+            if (!rafId) rafId = requestAnimationFrame(update);
+        }, { passive: true });
+    })();
 
 </script>
 <script src="/portfolio.js" defer></script>
