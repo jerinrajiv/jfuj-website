@@ -1,0 +1,42 @@
+[
+  {
+    "id": "proposal-ryan-anusha",
+    "url": "proposal-ryan-anusha.html",
+    "nav": "Proposal",
+    "label": "Romance",
+    "name": "Proposal",
+    "meta": "Spring 2025 · Fairmount Park",
+    "cover": "images/Portfolio/proposal/DSCF0677.jpg",
+    "alt": "Proposal, Ryan and Anusha"
+  },
+  {
+    "id": "graduation-sara",
+    "url": "graduation-sara.html",
+    "nav": "Graduation",
+    "label": "Portrait",
+    "name": "Graduation",
+    "meta": "Spring 2025 · New York City",
+    "cover": "images/Portfolio/graduation/DSCF9671.jpg",
+    "alt": "Graduation, Sara"
+  },
+  {
+    "id": "blog-baby-dedication",
+    "url": "blog-baby-dedication.html",
+    "nav": "Baby Dedication",
+    "label": "Family",
+    "name": "Baby Dedication",
+    "meta": "12 images",
+    "cover": "images/Portfolio/Baby%20Dedication/DSC09281.jpg",
+    "alt": "Baby Dedication"
+  },
+  {
+    "id": "blog-destination",
+    "url": "blog-destination.html",
+    "nav": "Destination",
+    "label": "Travel",
+    "name": "Destination",
+    "meta": "15 images",
+    "cover": "images/Portfolio/Destination/DSCF8236.jpg",
+    "alt": "Destination photography"
+  }
+]
