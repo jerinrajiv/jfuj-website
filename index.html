@@ -91,6 +91,7 @@
             letter-spacing: .22em;
             text-transform: uppercase;
             color: var(--text-mid);
+            animation: slideUp .8s cubic-bezier(0.22, 1, 0.36, 1) .25s both;
         }
 
         .home-headline {
@@ -100,6 +101,7 @@
             font-size: clamp(2rem,3.2vw,3.5rem);
             line-height: 1.1;
             color: var(--text);
+            animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) .4s both;
         }
 
         .home-subline {
@@ -109,6 +111,7 @@
             line-height: 1.9;
             color: var(--text-mid);
             max-width: 320px;
+            animation: slideUp .9s cubic-bezier(0.22, 1, 0.36, 1) .56s both;
         }
 
         .home-hero-scroll {
@@ -126,6 +129,7 @@
             align-items: center;
             gap: .75rem;
             white-space: nowrap;
+            animation: slideUp .9s cubic-bezier(0.22, 1, 0.36, 1) .85s both;
         }
 
         .home-hero-scroll::after {
@@ -183,7 +187,7 @@
             width: 100%;
             height: auto;
             display: block;
-            transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+            transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .style-band-img:hover img {
@@ -211,7 +215,15 @@
             flex-shrink: 0;
         }
 
-        .section-heading-rule { flex: 1; height: 1px; background: var(--sep); }
+        .section-heading-rule {
+            flex: 1;
+            height: 1px;
+            background: var(--sep);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .95s cubic-bezier(0.22, 1, 0.36, 1) .15s;
+        }
+        .reveal.visible .section-heading-rule { transform: scaleX(1); }
 
         .portfolio-intro {
             padding: 0 var(--gutter) 2rem;
@@ -388,7 +400,14 @@
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver(
         entries => entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+            } else {
+                // Instant reset while off-screen so re-entry always animates
+                e.target.style.transition = 'none';
+                e.target.classList.remove('visible');
+                requestAnimationFrame(() => { e.target.style.transition = ''; });
+            }
         }),
         { threshold: 0.06 }
     );

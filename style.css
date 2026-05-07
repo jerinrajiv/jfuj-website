@@ -62,22 +62,31 @@ main { flex: 1; }
 
 /* ─── Page entrance ─── */
 .page {
-    animation: rise 1.2s cubic-bezier(.16,1,.3,1) both;
+    animation: rise .45s ease both;
     padding-top: var(--nav-h);
 }
 
 @keyframes rise {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Hero element slide-up — used for staggered hero text */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ─── Scroll reveal ─── */
 .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1);
+    transform: translateY(28px);
+    filter: blur(5px);
+    transition: opacity .9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform .9s cubic-bezier(0.22, 1, 0.36, 1),
+                filter .75s ease;
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
 /* ═══════════════════════════════════
    NAVIGATION
@@ -390,7 +399,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+    transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .ed-img:hover img {
@@ -465,7 +474,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+    transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .story-card:hover .story-card-img img { transform: scale(1.04); }
@@ -729,7 +738,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+    transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .essay-img:hover img {
@@ -1168,7 +1177,7 @@ footer {
 .gallery-item img {
     width: 100%;
     display: block;
-    transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+    transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .gallery-item:hover img {
@@ -1265,7 +1274,7 @@ footer {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+    transition: transform .65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .portfolio-card:hover .portfolio-card-img img {
@@ -1306,4 +1315,19 @@ footer {
 @media (max-width: 600px) {
     .portfolio-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
     .gallery-grid { columns: 1; }
+}
+
+/* ═══════════════════════════════════
+   REDUCED MOTION
+═══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    .grain  { animation: none; }
+    .page   { animation: none; opacity: 1; }
+    .hero-scroll::after,
+    .home-hero-scroll::after { animation: none; }
+    .home-tag, .home-headline, .home-subline,
+    .home-hero-ghost, .home-hero-scroll { animation: none; opacity: 1; transform: none; }
+    .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+    .ed-img img, .story-card-img img, .essay-img img,
+    .gallery-item img, .portfolio-card-img img { transition: none; }
 }
