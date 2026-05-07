@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | jfuj.co</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Jost:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Subtle background texture for contact page */
+        .contact-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(196,170,170,.06) 0%, transparent 70%);
+        }
+
+        .contact-page {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Decorative thin lines */
+        .contact-lines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .contact-lines::before,
+        .contact-lines::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 1px;
+            height: 30vh;
+            background: linear-gradient(to bottom, transparent, var(--sep), transparent);
+            transform: translateY(-50%);
+        }
+
+        .contact-lines::before { left: 14%; }
+        .contact-lines::after  { right: 14%; }
+    </style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="contact-bg" aria-hidden="true"></div>
+<div class="contact-lines" aria-hidden="true"></div>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="blog-baby-dedication.html">Baby Dedication</a>
+    <a href="blog-destination.html">Destination</a>
+    <a href="graduation-sara.html">Graduation</a>
+    <a href="proposal-ryan-anusha.html">Proposal</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<div class="page">
+
+    <!-- NAV -->
+    <nav class="nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-logo">jfuj.co</a>
+        <ul class="nav-links">
+            <li><a href="blog-baby-dedication.html">Baby Dedication</a></li>
+            <li><a href="blog-destination.html">Destination</a></li>
+            <li><a href="graduation-sara.html">Graduation</a></li>
+            <li><a href="proposal-ryan-anusha.html">Proposal</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main>
+
+        <div class="contact-page">
+
+            <span class="contact-eyebrow">Get in Touch</span>
+
+            <h1 class="contact-title">
+                Come into the world.<br>
+                Say hello.
+            </h1>
+
+            <p class="contact-message">
+                The best way to reach Jerin is through Instagram. Everything lives there: the work, the process, and the conversation.
+            </p>
+
+            <a
+                href="https://www.instagram.com/jfuj.co"
+                target="_blank"
+                rel="noopener"
+                class="contact-handle"
+                aria-label="Jerin Kuruvilla on Instagram"
+            >
+                @jfuj.co
+            </a>
+
+            <p class="contact-handle-sub">Instagram</p>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-copy">© 2025 jfuj.co · All images reserved.</span>
+        <a href="index.html" class="footer-wordmark">jfuj.co</a>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/jfuj.co" target="_blank" rel="noopener">Instagram</a>
+            <a href="about.html">About</a>
+            <a href="proposal-ryan-anusha.html">Ryan &amp; Anusha</a>
+            <a href="graduation-sara.html">Sara</a>
+        </div>
+    </footer>
+
+</div><!-- /.page -->
+
+<script>
+    const nav = document.querySelector('.nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const overlay   = document.getElementById('navOverlay');
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        overlay.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open);
+        overlay.setAttribute('aria-hidden', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        overlay.setAttribute('aria-hidden', true);
+        document.body.style.overflow = '';
+    }));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jfuj.co | Film Photography by Jerin Kuruvilla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Jost:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .home-hero {
+            height: calc(100dvh - var(--nav-h));
+            min-height: 560px;
+            display: grid;
+            grid-template-columns: 59% 41%;
+            overflow: hidden;
+        }
+
+        .home-hero-img { overflow: hidden; position: relative; }
+
+        .home-hero-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .home-hero-side {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 3.5rem 5rem;
+            gap: 1.25rem;
+            background: var(--bg);
+        }
+
+        .home-hero-ghost {
+            position: absolute;
+            top: 5rem; right: 3rem;
+            font-family: var(--serif);
+            font-weight: 300;
+            font-size: clamp(4.5rem,7.5vw,7.5rem);
+            line-height: .88;
+            color: var(--sep);
+            user-select: none;
+            pointer-events: none;
+            letter-spacing: -.02em;
+            text-align: right;
+        }
+
+        .home-tag {
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: .8125rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+        }
+
+        .home-headline {
+            font-family: var(--serif);
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(2rem,3.2vw,3.5rem);
+            line-height: 1.1;
+            color: var(--text);
+        }
+
+        .home-subline {
+            font-family: var(--sans);
+            font-weight: 200;
+            font-size: .875rem;
+            line-height: 1.9;
+            color: var(--text-mid);
+            max-width: 320px;
+        }
+
+        .home-hero-scroll {
+            position: absolute;
+            bottom: 2.25rem; left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--sans);
+            font-weight: 100;
+            font-size: .5625rem;
+            letter-spacing: .34em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .75rem;
+            white-space: nowrap;
+        }
+
+        .home-hero-scroll::after {
+            content: '';
+            display: block;
+            width: 1px; height: 2rem;
+            background: var(--sep);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        /* Style statement band */
+        .style-band {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            padding: 6rem var(--gutter);
+            border-bottom: 1px solid var(--sep);
+        }
+
+        .style-band-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            padding-top: .5rem;
+        }
+
+        .style-band-label {
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: .8125rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+        }
+
+        .style-band-statement {
+            font-family: var(--serif);
+            font-weight: 300;
+            font-style: italic;
+            font-size: clamp(1.5rem,2.5vw,2.375rem);
+            line-height: 1.45;
+            color: var(--text);
+        }
+
+        .style-band-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: .875rem;
+        }
+
+        .style-band-img { overflow: hidden; cursor: pointer; }
+
+        .style-band-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1.8s cubic-bezier(.25,.46,.45,.94);
+        }
+
+        .style-band-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .style-band-img-tall { grid-row: 1/3; }
+        .style-band-img-sq   { }
+
+        /* Section heading */
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 2.5rem;
+            padding: 5rem var(--gutter) 2.5rem;
+        }
+
+        .section-heading-label {
+            font-family: var(--sans);
+            font-weight: 300;
+            font-size: .8125rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            flex-shrink: 0;
+        }
+
+        .section-heading-rule { flex: 1; height: 1px; background: var(--sep); }
+
+        .portfolio-intro {
+            padding: 0 var(--gutter) 2rem;
+        }
+
+        .portfolio-intro p {
+            font-family: var(--sans);
+            font-weight: 200;
+            font-size: .9375rem;
+            line-height: 1.9;
+            color: var(--text-mid);
+            max-width: 560px;
+        }
+
+        @media (max-width: 960px) {
+            .home-hero { grid-template-columns: 1fr; grid-template-rows: 58dvh auto; height: auto; min-height: auto; }
+            .home-hero-ghost { display: none; }
+            .home-hero-side { padding: 2.5rem 2rem 3rem; position: static; }
+            .style-band { grid-template-columns: 1fr; gap: 2rem; padding: 4rem var(--gutter); }
+            .style-band-right { grid-template-columns: 1fr 1fr; gap: .5rem; }
+            .style-band-img-tall { grid-row: auto; }
+            .section-heading { padding: 3rem var(--gutter) 1.5rem; }
+            .portfolio-intro { padding: 0 var(--gutter) 1.25rem; }
+            .portfolio-grid { padding: 0 var(--gutter) 4rem; }
+        }
+
+        @media (max-width: 600px) {
+            .home-hero { grid-template-rows: 55dvh auto; }
+            .style-band-right { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <a href="index.html">Home</a>
+    <a href="blog-baby-dedication.html">Baby Dedication</a>
+    <a href="blog-destination.html">Destination</a>
+    <a href="graduation-sara.html">Graduation</a>
+    <a href="proposal-ryan-anusha.html">Proposal</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<div class="page">
+
+    <!-- NAV -->
+    <nav class="nav" aria-label="Site navigation">
+        <a href="index.html" class="nav-logo">jfuj.co</a>
+        <ul class="nav-links">
+            <li><a href="blog-baby-dedication.html">Baby Dedication</a></li>
+            <li><a href="blog-destination.html">Destination</a></li>
+            <li><a href="graduation-sara.html">Graduation</a></li>
+            <li><a href="proposal-ryan-anusha.html">Proposal</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <main>
+
+        <!-- HERO -->
+        <section class="home-hero">
+            <div class="home-hero-img">
+                <img
+                    src="images/Portfolio/proposal/DSCF1253.jpg"
+                    alt="Soft cinematic film photography by jfuj"
+                    loading="eager"
+                >
+            </div>
+            <div class="home-hero-side">
+                <div class="home-hero-ghost" aria-hidden="true">jfuj.co</div>
+                <span class="home-tag">Philadelphia · Film · Digital</span>
+                <h1 class="home-headline">
+                    Soft. Cinematic.<br>
+                    Deeply felt.
+                </h1>
+                <p class="home-subline">
+                    Film photography that lingers, rendered in the particular light of analog and the grain that makes a moment feel real.
+                </p>
+                <div class="home-hero-scroll" aria-hidden="true">Scroll</div>
+            </div>
+        </section>
+
+        <!-- STYLE STATEMENT -->
+        <section class="style-band reveal">
+            <div class="style-band-left">
+                <span class="style-band-label">The Aesthetic</span>
+                <p class="style-band-statement">
+                    Every frame is a decision.<br>
+                    Soft light. Deliberate exposure.<br>
+                    The grain that makes it feel true.
+                </p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="about.html" class="about-strip-cta">About Jerin</a>
+                </div>
+            </div>
+            <div class="style-band-right">
+                <div class="style-band-img style-band-img-tall">
+                    <img src="images/Portfolio/proposal/DSCF1048.jpg" alt="Soft cinematic portrait" loading="lazy">
+                </div>
+                <div class="style-band-img style-band-img-sq">
+                    <img src="images/Portfolio/Destination/DSCF8646.jpg" alt="Film grain portrait" loading="lazy">
+                </div>
+                <div class="style-band-img style-band-img-sq">
+                    <img src="images/Portfolio/Destination/DSCF8215.jpg" alt="Destination photography" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO GRID -->
+        <div class="section-heading reveal">
+            <span class="section-heading-label">Portfolio</span>
+            <div class="section-heading-rule"></div>
+        </div>
+
+        <div class="portfolio-intro reveal">
+            <p>Four categories. Proposals, portraits, travels, and celebrations, each one approached the same way: with patience, an eye, and the conviction that the best images happen when no one is performing anything.</p>
+        </div>
+
+        <div class="portfolio-grid" id="stories">
+            <a href="proposal-ryan-anusha.html" class="portfolio-card reveal">
+                <div class="portfolio-card-img">
+                    <img src="images/Portfolio/proposal/DSCF0675.jpg" alt="Proposal, Ryan and Anusha" loading="lazy">
+                </div>
+                <span class="portfolio-card-label">Romance</span>
+                <span class="portfolio-card-name">Proposal</span>
+                <span class="portfolio-card-count">Spring 2025 · Fairmount Park</span>
+            </a>
+            <a href="graduation-sara.html" class="portfolio-card reveal">
+                <div class="portfolio-card-img">
+                    <img src="images/Portfolio/graduation/DSCF9671.jpg" alt="Graduation, Sara" loading="lazy">
+                </div>
+                <span class="portfolio-card-label">Portrait</span>
+                <span class="portfolio-card-name">Graduation</span>
+                <span class="portfolio-card-count">Spring 2025 · Philadelphia</span>
+            </a>
+            <a href="blog-destination.html" class="portfolio-card reveal">
+                <div class="portfolio-card-img">
+                    <img src="images/Portfolio/Destination/DSCF8236.jpg" alt="Destination photography" loading="lazy">
+                </div>
+                <span class="portfolio-card-label">Travel</span>
+                <span class="portfolio-card-name">Destination</span>
+                <span class="portfolio-card-count">15 images</span>
+            </a>
+            <a href="blog-baby-dedication.html" class="portfolio-card reveal">
+                <div class="portfolio-card-img">
+                    <img src="images/Portfolio/Baby%20Dedication/DSC09281.jpg" alt="Baby Dedication" loading="lazy">
+                </div>
+                <span class="portfolio-card-label">Family</span>
+                <span class="portfolio-card-name">Baby Dedication</span>
+                <span class="portfolio-card-count">12 images</span>
+            </a>
+        </div>
+
+        <!-- ABOUT STRIP -->
+        <div class="about-strip reveal">
+            <div class="about-strip-left">
+                <span class="about-strip-eyebrow">The Photographer</span>
+                <p class="about-strip-quote">
+                    "There's a cost to each frame that changes how you see. You wait for the right light. You make a decision. You press the shutter."
+                </p>
+            </div>
+            <div class="about-strip-right">
+                <p class="about-strip-body">
+                    Jerin Kuruvilla is based in Philadelphia. His work lives in the space between editorial and deeply personal: dreamy, unhurried, rendered in the light that earns its place.
+                </p>
+                <a href="about.html" class="about-strip-cta">Read more</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <span class="footer-copy">© 2025 jfuj.co · All images reserved.</span>
+        <a href="index.html" class="footer-wordmark">jfuj.co</a>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/jfuj.co" target="_blank" rel="noopener">Instagram</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </footer>
+
+</div><!-- /.page -->
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const overlay   = document.getElementById('navOverlay');
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        overlay.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open);
+        overlay.setAttribute('aria-hidden', !open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        overlay.setAttribute('aria-hidden', true);
+        document.body.style.overflow = '';
+    }));
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+        entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        }),
+        { threshold: 0.06 }
+    );
+    reveals.forEach(el => observer.observe(el));
+
+</script>
+
+</body>
+</html>
